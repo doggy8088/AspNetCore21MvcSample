@@ -11,31 +11,12 @@ namespace AspNetCore21Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        public IAppSettings A1 { get; }
-        public IAppSettingsScoped A2 { get; }
-        public IAppSettingsSingleton A3 { get; }
+        public AppSettings Settings { get; }
 
-        public HomeController(IAppSettings a1, IAppSettingsScoped a2, IAppSettingsSingleton a3)
+        public HomeController(AppSettings settings)
         {
-            A1 = a1;
-            A2 = a2;
-            A3 = a3;
+            Settings = settings;
         }
-
-
-        public IActionResult Test1()
-        {
-            return Content(A1.Name);
-        }
-        public IActionResult Test2()
-        {
-            return Content(A2.Name);
-        }
-        public IActionResult Test3()
-        {
-            return Content(A3.Name);
-        }
-
 
         public IActionResult Index()
         {
@@ -46,7 +27,7 @@ namespace AspNetCore21Mvc.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = HttpContext.Session.GetString("Key");
+            ViewData["Message"] = this.Settings.SMTP_IP;
 
             return View();
         }

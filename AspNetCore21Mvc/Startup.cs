@@ -34,11 +34,10 @@ namespace AspNetCore21Mvc
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddTransient<IAppSettings, AppSettings>();
+            var appSettings = new AppSettings();
+            Configuration.GetSection("App").Bind(appSettings);
+            services.AddSingleton<AppSettings>(appSettings);
 
-            services.AddScoped<IAppSettingsScoped, AppSettings>();
-
-            services.AddSingleton<IAppSettingsSingleton, AppSettings>();
 
             services.AddDistributedMemoryCache();
             services.AddSession();
