@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using AspNetCore21Mvc.Models;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCore21Mvc.Controllers
 {
     public class HomeController : Controller
     {
+        public ILogger<HomeController> Log { get; }
         public IOptionsSnapshot<AppSettings> Settings { get; }
 
-        public HomeController(IOptionsSnapshot<AppSettings> settings)
+        public HomeController(ILogger<HomeController> log, IOptionsSnapshot<AppSettings> settings)
         {
+            Log = log;
             Settings = settings;
         }
 
@@ -36,6 +39,10 @@ namespace AspNetCore21Mvc.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
+
+            Log.LogCritical("聯絡頁面死掉了！");
+
+            throw new Exception("BAD");
 
             return View();
         }
