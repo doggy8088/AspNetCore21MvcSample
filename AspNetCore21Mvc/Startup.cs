@@ -38,23 +38,25 @@ namespace AspNetCore21Mvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.Use(async (context, next) => {
-                await context.Response.WriteAsync("Hello");
-                await next();
-                await context.Response.WriteAsync("Will");
-            });
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
 
-            app.Use(async (context, next) => {
-                await context.Response.WriteAsync("Test");
-                if (context.Request.QueryString.Value != "")
-                {
-                    await next();
-                }
-                await context.Response.WriteAsync("123");
-            });
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
 
-            app.Run(async (context) => {
-                await context.Response.WriteAsync("World");
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
