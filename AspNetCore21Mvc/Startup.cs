@@ -34,10 +34,7 @@ namespace AspNetCore21Mvc
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var appSettings = new AppSettings();
-            Configuration.GetSection("App").Bind(appSettings);
-            services.AddSingleton<AppSettings>(appSettings);
-
+            services.Configure<AppSettings>(Configuration.GetSection("App"));
 
             services.AddDistributedMemoryCache();
             services.AddSession();

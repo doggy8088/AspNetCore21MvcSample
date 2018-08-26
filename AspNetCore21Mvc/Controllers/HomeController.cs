@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using AspNetCore21Mvc.Models;
+using Microsoft.Extensions.Options;
 
 namespace AspNetCore21Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        public AppSettings Settings { get; }
+        public IOptionsSnapshot<AppSettings> Settings { get; }
 
-        public HomeController(AppSettings settings)
+        public HomeController(IOptionsSnapshot<AppSettings> settings)
         {
             Settings = settings;
         }
@@ -27,7 +28,7 @@ namespace AspNetCore21Mvc.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = this.Settings.SMTP_IP;
+            ViewData["Message"] = this.Settings.Value.SMTP_IP;
 
             return View();
         }
