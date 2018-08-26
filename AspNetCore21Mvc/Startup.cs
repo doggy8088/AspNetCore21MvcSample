@@ -40,7 +40,8 @@ namespace AspNetCore21Mvc
 
             services.AddSingleton<IAppSettingsSingleton, AppSettings>();
 
-
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -76,6 +77,8 @@ namespace AspNetCore21Mvc
             //});
 
             app.UseCookiePolicy();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

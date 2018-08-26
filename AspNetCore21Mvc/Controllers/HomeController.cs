@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using AspNetCore21Mvc.Models;
 
 namespace AspNetCore21Mvc.Controllers
@@ -38,12 +39,14 @@ namespace AspNetCore21Mvc.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("Key", "Hello");
+
             return View();
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = HttpContext.Session.GetString("Key");
 
             return View();
         }
