@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore21Mvc", "AspNetCore21Mvc\AspNetCore21Mvc.csproj", "{DDF1E592-6F51-4F06-80BF-3A295E3A7197}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api2", "api2\api2.csproj", "{10BC16C7-DAD4-41C9-9A24-4036767E00F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DDF1E592-6F51-4F06-80BF-3A295E3A7197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDF1E592-6F51-4F06-80BF-3A295E3A7197}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDF1E592-6F51-4F06-80BF-3A295E3A7197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BC16C7-DAD4-41C9-9A24-4036767E00F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BC16C7-DAD4-41C9-9A24-4036767E00F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BC16C7-DAD4-41C9-9A24-4036767E00F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BC16C7-DAD4-41C9-9A24-4036767E00F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
